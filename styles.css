@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 200px;
+    padding: 10px;
+  }
+  
+  button {
+    background: rgb(38, 122, 212);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-family: inherit;
+    font-weight: 600;
+  }
+  

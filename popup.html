@@ -7,9 +7,24 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <img src="icons/icon48.svg" />
-  <h2>Browser Security Check</h2>
-  <button id="checkSecurity">Run Security Check</button>
+  <div class="header">
+      <img src="icons/icon48.svg" />
+      <p>Browser Security Check</p>
+    </div>
+    <div class="main">
+      <button id="checkSecurity" class="checkSecurity">Run Security Check</button>
+      <div class="loader-div">
+        <!-- <div class="loader" id="loader"></div> -->
+         <img src="icons/check-1.svg" width="80%" />
+      </div>
+      <div class="summary">
+        <div class="status" id="status">
+          <!-- ✅ Everything is good! -->
+          ⚠️ Found issues with your browser
+        </div>
+        <button class="view-detailed-report" id="view-detailed-report">Detailed Report</button>
+      </div>
+    </div>
   <script src="popup.js"></script>
 </body>
 </html>

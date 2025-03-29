@@ -5,26 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browser Security Analyzer</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      width: 400px;
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .header img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+
+    .main {
+      padding: 20px;
+    }
+
+    .checkSecurity {
+      width: 100%;
+      padding: 12px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .checkSecurity:hover {
+      background: #1557b0;
+    }
+
+    .checkSecurity:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .loader-div {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .loader-div img {
+      width: 48px;
+      height: 48px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .summary {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f8f9fa;
+    }
+
+    .status {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .status.success {
+      background: #e6f4ea;
+      color: #1e8e3e;
+    }
+
+    .status.warning {
+      background: #fef7e0;
+      color: #b95000;
+    }
+
+    .status.error {
+      background: #fce8e6;
+      color: #c5221f;
+    }
+
+    .view-detailed-report {
+      width: 100%;
+      padding: 10px;
+      background: #f8f9fa;
+      color: #1a73e8;
+      border: 1px solid #1a73e8;
+      border-radius: 6px;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .view-detailed-report:hover {
+      background: #e8f0fe;
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 10px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .stat-value {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+
+    .stat-label {
+      font-size: 0.8em;
+      color: #5f6368;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="header">
-      <img src="icons/icon48.svg" />
-      <p>Browser Security Check</p>
+    <img src="icons/icon48.svg" alt="Security Analyzer Icon" />
+    <p>Browser Security Check</p>
+  </div>
+
+  <div class="main">
+    <button id="checkSecurity" class="checkSecurity">
+      <span>Run Security Check</span>
+    </button>
+
+    <div class="loader-div">
+      <img src="icons/check-1.svg" alt="Analyzing" />
     </div>
-    <div class="main">
-      <button id="checkSecurity" class="checkSecurity">Run Security Check</button>
-      <div class="loader-div">
-        <!-- <div class="loader" id="loader"></div> -->
-         <img src="icons/check-1.svg" width="80%" />
+
+    <div class="summary">
+      <div class="status" id="status">
+        Click "Run Security Check" to analyze your browser security
       </div>
-      <div class="summary">
-        <div class="status" id="status">
-          <!-- ✅ Everything is good! -->
-          ⚠️ Found issues with your browser
-        </div>
-        <button class="view-detailed-report" id="view-detailed-report">Detailed Report</button>
+
+      <div class="quick-stats" id="quickStats">
+        <!-- Quick stats will be populated by JavaScript -->
       </div>
+
+      <button class="view-detailed-report" id="view-detailed-report">
+        View Detailed Report
+      </button>
     </div>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>

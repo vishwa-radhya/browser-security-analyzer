@@ -3,7 +3,17 @@
     "name": "Browser Security Analyzer",
     "version": "1.0",
     "description": "Analyze browser security by checking extensions, settings, and browsing risks.",
-    "permissions": ["storage", "tabs", "activeTab", "scripting"],
+    "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "scripting",
+        "management",
+        "privacy",
+        "cookies",
+        "webNavigation",
+        "history"
+    ],
     "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background.js"

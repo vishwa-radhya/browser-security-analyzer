@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function displayResults(results) {
+    // Display summary statistics
+    displaySummaryStats(results);
+
     // Display extensions
     const extensionsList = document.getElementById('extensions-list');
     results.extensions.forEach(ext => {
@@ -80,5 +83,34 @@ function displayResults(results) {
     habitsHtml += '</div>';
     
     browsingHabits.innerHTML = habitsHtml;
+}
+
+function displaySummaryStats(results) {
+    const summaryStats = document.getElementById('summaryStats');
+    
+    // Calculate statistics
+    const highRiskExtensions = results.extensions.filter(ext => ext.riskLevel === 'high').length;
+    const totalExtensions = results.extensions.length;
+    const configIssues = results.browserConfig.warnings.length;
+    const browsingIssues = results.browsingHabits.warnings.length;
+    const totalIssues = highRiskExtensions + configIssues + browsingIssues;
+    
+    // Create summary stats HTML
+    const statsHtml = `
+        <div class="stat-item">
+            <div class="stat-value">${totalExtensions}</div>
+            <div class="stat-label">Total Extensions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">${highRiskExtensions}</div>
+            <div class="stat-label">High Risk Extensions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">${totalIssues}</div>
+            <div class="stat-label">Total Security Issues</div>
+        </div>
+    `;
+    
+    summaryStats.innerHTML = statsHtml;
 }
   

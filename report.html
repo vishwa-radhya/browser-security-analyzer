@@ -207,14 +207,104 @@
       font-size: 0.9em;
     }
 
+    /* New styles for resolution steps */
+    .resolution-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .resolution-title {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #1a73e8;
+      border-bottom: 2px solid #e8eaed;
+      padding-bottom: 10px;
+    }
+
+    .resolution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .resolution-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .resolution-card h3 {
+      margin: 0 0 15px 0;
+      color: #202124;
+      font-size: 1.2em;
+    }
+
+    .resolution-steps {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .resolution-step {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      font-size: 0.95em;
+      color: #5f6368;
+    }
+
+    .resolution-step::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      background: #1a73e8;
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+
+    .resolution-step::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 10px;
+      width: 2px;
+      height: 2px;
+      background: #1a73e8;
+      border-radius: 50%;
+    }
+
+    .action-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .action-button:hover {
+      background: #1557b0;
+    }
+
     @media (max-width: 1024px) {
-      .report-grid {
+      .report-grid, .resolution-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 768px) {
-      .report-grid {
+      .report-grid, .resolution-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -245,6 +335,36 @@
       <div class="section">
         <h2 class="section-title">Browsing Habits</h2>
         <div id="browsing-habits"></div>
+      </div>
+    </div>
+
+    <!-- New resolution section -->
+    <div class="resolution-section">
+      <h2 class="resolution-title">Security Recommendations</h2>
+      <div class="resolution-grid">
+        <div class="resolution-card">
+          <h3>Extension Security</h3>
+          <ul class="resolution-steps" id="extension-steps">
+            <!-- Extension resolution steps will be populated by JavaScript -->
+          </ul>
+          <button class="action-button" id="fix-extensions">Fix Extension Issues</button>
+        </div>
+        
+        <div class="resolution-card">
+          <h3>Browser Settings</h3>
+          <ul class="resolution-steps" id="config-steps">
+            <!-- Configuration resolution steps will be populated by JavaScript -->
+          </ul>
+          <button class="action-button" id="fix-config">Fix Configuration Issues</button>
+        </div>
+        
+        <div class="resolution-card">
+          <h3>Browsing Habits</h3>
+          <ul class="resolution-steps" id="habits-steps">
+            <!-- Browsing habits resolution steps will be populated by JavaScript -->
+          </ul>
+          <button class="action-button" id="fix-habits">Fix Browsing Issues</button>
+        </div>
       </div>
     </div>
   </div>
